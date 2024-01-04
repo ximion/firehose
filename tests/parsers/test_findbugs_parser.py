@@ -31,7 +31,7 @@ def readRawData(filePath):
     return ret
 
 class TestParseFile(unittest.TestCase):
-    def run_testdata(self, xmlFileName, answer, isDebug=False):
+    def _run_testdata(self, xmlFileName, answer, isDebug=False):
         path = os.path.join(os.path.dirname(__file__), "example-output",
                 "findbugs", xmlFileName)
         analysis = findbugs.parse_file(path)
@@ -120,7 +120,7 @@ class TestParseFile(unittest.TestCase):
                 "edu/umd/cs/findbugs/formatStringChecker/"+
                 "FormatterRuntimeTest.java"]
                 ]
-        self.run_testdata("findbugs_jformatstring.xml", answer)
+        self._run_testdata("findbugs_jformatstring.xml", answer)
 
     def test_testdata_example(self):
         answer = [
@@ -138,10 +138,10 @@ class TestParseFile(unittest.TestCase):
                 [19, "l1.l2.O2.bugs()", "l1/l2/O2.java"],
                 [24, "l1.l2.O2.main(String[])", "l1/l2/O2.java"],
                 ]
-        self.run_testdata("findbugs_Example.xml", answer)
+        self._run_testdata("findbugs_Example.xml", answer)
 
     def test_testdata_no_method(self):
         answer = [
                 [77, None, "com/clearspring/ircbot/trac/TracRpc.java"],
                 ]
-        self.run_testdata("findbugs_no_method.xml", answer)
+        self._run_testdata("findbugs_no_method.xml", answer)
